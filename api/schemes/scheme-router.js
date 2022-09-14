@@ -101,9 +101,8 @@ router.get('/:scheme_id/steps', checkSchemeId, (req, res, next) => {
   }
 */
 router.post('/', validateScheme, (req, res, next) => {
-  const scheme = req.body
 
-  Schemes.add(scheme)
+  Schemes.add({scheme_id: req.body.scheme_id, scheme_name: req.body.scheme_name})
     .then(scheme => {
       res.status(201).json(scheme)
     })
